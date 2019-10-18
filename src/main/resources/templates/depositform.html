@@ -5,21 +5,49 @@
     <title>Title</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/addregistration">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/adddeposit">Add deposit</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/addwithdraw">Withdraw</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/registrationlist">Registration List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/depositlist">Deposit List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/withdrawlist">Withdraw List</a>
+        </li>
+
+    </ul>
+</nav>
+<br/>
 <h1>Deposit Form</h1>
 
-<form action="#" th:action="@{/processperson}" th:object="${person}" method="post">
+<form action="#" th:action="@{/procesdeposit}" th:object="${deposit}" method="post">
     <input type="hidden" th:field="*{id}" />
     Name :<input type="text" th:field="*{name}" />
     <span th:if="${#fields.hasErrors('name')}"
           th:errors="*{name}"></span><br/>
 
-    PetOwned :<input type="number" th:field="*{numberOfPetsOwned}"/>
-    <span th:if="${#fields.hasErrors('numberOfPetsOwned')}"
-          th:errors="*{numberOfPetsOwned}"></span><br/>
+    Deposit Amount :<input type="number" th:field="*{depositAmount}"/>
+    <span th:if="${#fields.hasErrors('depositAmount')}"
+          th:errors="*{depositAmount}"></span><br/>
 
-    Description :<input type="text" th:field="*{description}"/>
-    <span th:if="${#fields.hasErrors('description')}"
-          th:errors="*{description}"></span><br/>
+    Deposit Balance :<input type="text" th:field="*{depositBalance}"/>
+    <span th:if="${#fields.hasErrors('depositBalance')}"
+          th:errors="*{depositBalance}"></span><br/>
 
     <input type="submit" value="Submit" />
 </form>

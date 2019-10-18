@@ -12,21 +12,28 @@
             <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addperson">Add Person</a>
+            <a class="nav-link" href="/addregistration">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addpet">Add Pets</a>
+            <a class="nav-link" href="/adddeposit">Add deposit</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/personlist">All Persons</a>
+            <a class="nav-link" href="/addwithdraw">Withdraw</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/petlist">All Pets</a>
+            <a class="nav-link" href="/registrationlist">Registration List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/depositlist">Deposit List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/withdrawlist">Withdraw List</a>
         </li>
 
     </ul>
 </nav>
-<h1  >Deposit List</h1>
+<br/>
+<h1  >Registration List</h1>
 <div class="container">
     <div class="row">
         <table class="table">
@@ -39,26 +46,28 @@
 
 
                 <tr>
-                    <th>Person Id</th>
-                    <th>Person Name</th>
-                    <th>Number of Pet</th>
+                    <th>Account Id</th>
+                    <th>Name</th>
+                    <th>Adress</th>
+                    <th>Phone</th>
                     <th>Description</th>
 
 
                 </tr>
             </div>
 
-            <tr th:each="person : ${persons}">
-                <td th:text="${person.id}"></td>
-                <td th:text="${person.name}"></td>
-                <td th:text="${person.numberOfPetsOwned}"></td>
-                <td th:text="${person.description}"></td>
+            <tr th:each="registration : ${registrations}">
+                <td th:text="${registration.accountID}"></td>
+                <td th:text="${registration.name}"></td>
+                <td th:text="${registration.address}"></td>
+                <td th:text="${registration.phone}"></td>
+                <td th:text="${registration.description}"></td>
 
                 <td>
 
-                    <a th:href="@{/updateperson/{id}(id=${person.id})}">Update</a>
-                    <a th:href="@{/detailperson/{id}(id=${person.id})}">Details</a>
-                    <a th:href="@{/deleteperson/{id}(id=${person.id})}">Delete</a>
+                    <a th:href="@{/updateregistration/{id}(id=${registration.accountID})}">Update</a>
+                    <a th:href="@{/detailregistration/{id}(id=${registration.accountID})}">Details</a>
+                    <a th:href="@{/deleteregistration/{id}(id=${registration.accountID})}">Delete</a>
 
                 </td>
             </tr>

@@ -13,12 +13,52 @@ public class Withdraw {
     private String name;
     @NotNull
     @Size(min = 2)
-    private String type;
+    private int withdrawAmount;
 
     @NotNull
-    private int age;
+    private int accountBalance;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "people_id")
-    private Deposit deposit;
+    @JoinColumn(name = "accountID")
+    private Registration registration;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWithdrawAmount() {
+        return withdrawAmount;
+    }
+
+    public void setWithdrawAmount(int withdrawAmount) {
+        this.withdrawAmount = withdrawAmount;
+    }
+
+    public int getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(int accountBalance) {
+        this.accountBalance = accountBalance;
+    }
+
+    public Registration getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(Registration registration) {
+        this.registration = registration;
+    }
 }

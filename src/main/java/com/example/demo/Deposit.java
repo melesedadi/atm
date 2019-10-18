@@ -12,14 +12,54 @@ public class Deposit {
     @NotNull
     @Size(min = 4)
     private String name;
-    @NotNull
-    private int numberOfPetsOwned;
 
     @NotNull
-    @Size(min = 5, max = 100)
-    private String description;
+    private int depositAmount ;
 
-    @OneToMany(mappedBy = "deposit", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<Withdraw> pets;
+    @NotNull
+    private int depositBalance ;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID")
+    private Registration registration;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getDepositAmount() {
+        return depositAmount;
+    }
+
+    public void setDepositAmount(int depositAmount) {
+        this.depositAmount = depositAmount;
+    }
+
+    public int getDepositBalance() {
+        return depositBalance;
+    }
+
+    public void setDepositBalance(int depositBalance) {
+        this.depositBalance = depositBalance;
+    }
+
+    public Registration getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(Registration registration) {
+        this.registration = registration;
+    }
 }

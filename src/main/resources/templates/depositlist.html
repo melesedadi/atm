@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
     <ul class="navbar-nav">
@@ -13,20 +12,27 @@
             <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addperson">Add Person</a>
+            <a class="nav-link" href="/addregistration">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addpet">Add Pets</a>
+            <a class="nav-link" href="/adddeposit">Add deposit</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/personlist">All Persons</a>
+            <a class="nav-link" href="/addwithdraw">Withdraw</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/petlist">All Pets</a>
+            <a class="nav-link" href="/registrationlist">Registration List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/depositlist">Deposit List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/withdrawlist">Withdraw List</a>
         </li>
 
     </ul>
 </nav>
+<br/>
 <h1  >Deposit List</h1>
 <div class="container">
     <div class="row">
@@ -40,34 +46,32 @@
 
 
                 <tr>
-                    <th>Person Id</th>
-                    <th>Person Name</th>
-                    <th>Number of Pet</th>
-                    <th>Description</th>
+                    <th>Account Id</th>
+                    <th>Name</th>
+                    <th>Deposit Amount</th>
+                    <th>Deposit Balance</th>
 
 
                 </tr>
             </div>
 
-            <tr th:each="person : ${persons}">
-                <td th:text="${person.id}"></td>
-                <td th:text="${person.name}"></td>
-                <td th:text="${person.numberOfPetsOwned}"></td>
-                <td th:text="${person.description}"></td>
+            <tr th:each="deposit : ${deposits}">
+                <td th:text="${deposit.id}"></td>
+                <td th:text="${deposit.name}"></td>
+                <td th:text="${deposit.depositAmount}"></td>
+                <td th:text="${deposit.depositBalance}"></td>
 
                 <td>
 
-                    <a th:href="@{/updateperson/{id}(id=${person.id})}">Update</a>
-                    <a th:href="@{/detailperson/{id}(id=${person.id})}">Details</a>
-                    <a th:href="@{/deleteperson/{id}(id=${person.id})}">Delete</a>
+                    <a th:href="@{/updatedeposit/{id}(id=${deposit.id})}">Update</a>
+                    <a th:href="@{/detaildeposit/{id}(id=${deposit.id})}">Details</a>
+                    <a th:href="@{/deletedeposit/{id}(id=${deposit.id})}">Delete</a>
 
                 </td>
             </tr>
             <div class="col">
 
             </div>
-
-
 
         </table>
     </div>

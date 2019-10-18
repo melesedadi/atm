@@ -51,6 +51,8 @@ public class HomeController {
     DepositRepository depositRepository;
     @Autowired
     WithdrawRepository withdrawRepository;
+    @Autowired
+    RegistrationRepository registrationRepository;
 
     @RequestMapping("/")
     public String index(){
@@ -65,79 +67,123 @@ public class HomeController {
     public String homepage(Model model) {
         model.addAttribute("deposits", depositRepository.findAll());
         model.addAttribute("withdraws", withdrawRepository.findAll());
+        model.addAttribute("registrations", registrationRepository.findAll());
         return "index";
     }
-    @RequestMapping("/personlist")
+
+    @RequestMapping("/registrationlist")
     public String departmentList(Model model) {
-        model.addAttribute("deposits", depositRepository.findAll());
-        return "personlist";
+        model.addAttribute("registrations", registrationRepository.findAll());
+        return "registrationlist";
 
     }
 
-    @GetMapping("/addperson")
-    public String personForm(Model model) {
-        model.addAttribute("deposit", new Deposit());
-        return "personform";
+    @GetMapping("/addregistration")
+    public String registrationForm(Model model) {
+        model.addAttribute("registration", new Registration());
+        return "registrationform";
     }
 
-    @PostMapping("/processperson")
-    public String processForm1(@Valid Deposit deposit,
+    @PostMapping("/processregistration")
+    public String processRegistrationForm(@Valid Registration registration,
                                BindingResult result) {
         if (result.hasErrors()) {
-            return "personform";
+            return "registrationform";
         }
-        depositRepository.save(deposit);
-        return "redirect:/personlist";
+        registrationRepository.save(registration);
+        return "redirect:/registrationlist";
     }
-    @RequestMapping("/petlist")
+    @RequestMapping("/withdrawlist")
     public String employeeList(Model model){
-        model.addAttribute("pets", withdrawRepository.findAll());
-        return "petlist";
+        model.addAttribute("withdraws", withdrawRepository.findAll());
+        return "withdrawlist";
     }
 
-    @GetMapping("/addpet")
+    @GetMapping("/addwithdraw")
     public String employeeForm(Model model){
         model.addAttribute("withdraw", new Withdraw());
         model.addAttribute("deposits", depositRepository.findAll());
-        return "petform";
+        model.addAttribute("registrations", registrationRepository.findAll());
+        return "withdrawform";
     }
-    @PostMapping("/processpet")
-    public String processForm2(@Valid Withdraw withdraw,
+    @PostMapping("/processwithdraw")
+    public String processWithdrawForm(@Valid Withdraw withdraw,
                                BindingResult result){
         if (result.hasErrors()){
-            return "petform";
+            return "withdrawform";
         }
         withdrawRepository.save(withdraw);
-        return "redirect:/petlist";
+        return "redirect:/withdrawlist";
     }
-    @RequestMapping("/detailperson/{id}")
-    public String showPerson(@PathVariable("id") long id, Model model)
-    {model.addAttribute("person", depositRepository.findAll());
-        return "showperson";
+
+
+    @RequestMapping("/depositlist")
+    public String depositList(Model model){
+        model.addAttribute("deposits", depositRepository.findAll());
+        return "depositlist";
     }
-    @RequestMapping("/updateperson/{id}")
-    public String updatePerson(@PathVariable("id") long id,Model model){
-        model.addAttribute("person", depositRepository.findById(id).get());
-        return "personform";
+
+    @GetMapping("/adddeposit")
+    public String depositForm(Model model){
+        model.addAttribute("deposit", new Deposit());
+        model.addAttribute("withdraws", withdrawRepository.findAll());
+        model.addAttribute("registrations", registrationRepository.findAll());
+        return "depositform";
     }
-    @RequestMapping("/deleteperson/{id}")
-    public String delPerson(@PathVariable("id") long id){
-        depositRepository.deleteById(id);
+    @PostMapping("/procesdeposit")
+    public String processDepositForm(@Valid Deposit deposit,
+                                      BindingResult result){
+        if (result.hasErrors()){
+            return "depositform";
+        }
+        depositRepository.save(deposit);
+        return "redirect:/depositlist";
+    }
+
+    @RequestMapping("/detailregistration/{id}")
+    public String showRegistration(@PathVariable("acountID") long accountID, Model model)
+    {model.addAttribute("registration", registrationRepository.findAll());
+        return "showregistration";
+    }
+    @RequestMapping("/updateregistration/{id}")
+    public String updateRegistration(@PathVariable("accountID") long accountID,Model model){
+        model.addAttribute("registration",registrationRepository.findById(accountID).get());
+        return "registrationform";
+    }
+    @RequestMapping("/deleteregistration/{id}")
+    public String delRegistration(@PathVariable("acountID") long accountID){
+        depositRepository.deleteById(accountID);
         return "redirect:/";
     }
-    @RequestMapping("/detailpet/{id}")
-    public String showPet(@PathVariable("id") long id, Model model)
-    {model.addAttribute("pet", withdrawRepository.findById(id).get());
-        return "showpet";
+    @RequestMapping("/detailwithdraw/{id}")
+    public String showWithdraw(@PathVariable("id") long id, Model model)
+    {model.addAttribute("withdraw", withdrawRepository.findById(id).get());
+        return "showwithdraw";
     }
-    @RequestMapping("/updatepet/{id}")
-    public String updatePet(@PathVariable("id") long id,Model model){
-        model.addAttribute("person", depositRepository.findById(id).get());
-        model.addAttribute("pets", withdrawRepository.findAll());
-        return "petform";
+    @RequestMapping("/updatewithdraw/{id}")
+    public String updateWithdraw(@PathVariable("id") long id,Model model){
+        model.addAttribute("registration", depositRepository.findById(id).get());
+        model.addAttribute("withdraws", withdrawRepository.findAll());
+         return "withdrawform";
     }
-    @RequestMapping("/deletepet/{id}")
-    public String delPet(@PathVariable("id") long id){
+    @RequestMapping("/deletewithdraw/{id}")
+    public String delWithdraw(@PathVariable("id") long id){
+        withdrawRepository.deleteById(id);
+        return "redirect:/";
+    }
+    @RequestMapping("/detaildeposit/{id}")
+    public String showDeposit(@PathVariable("id") long id, Model model)
+    {model.addAttribute("deposit", depositRepository.findById(id).get());
+        return "showdeposit";
+    }
+    @RequestMapping("/updatedeposit/{id}")
+    public String updateDeposit(@PathVariable("id") long id,Model model){
+        model.addAttribute("registration", registrationRepository.findById(id).get());
+        model.addAttribute("deposits", depositRepository.findAll());
+        return "depositform";
+    }
+    @RequestMapping("/deletedeposit/{id}")
+    public String deldeposit(@PathVariable("id") long id){
         withdrawRepository.deleteById(id);
         return "redirect:/";
     }

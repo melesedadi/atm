@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
     <ul class="navbar-nav">
@@ -13,21 +12,27 @@
             <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addperson">Add Person</a>
+            <a class="nav-link" href="/addregistration">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addpet">Add Pets</a>
+            <a class="nav-link" href="/adddeposit">Add deposit</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/personlist">All Persons</a>
+            <a class="nav-link" href="/addwithdraw">Withdraw</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/petlist">All Pets</a>
+            <a class="nav-link" href="/registrationlist">Registration List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/depositlist">Deposit List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/withdrawlist">Withdraw List</a>
         </li>
 
     </ul>
 </nav>
-
+<br/>
 <h1  >Pet List</h1>
 <div class="container">
     <div class="row">
@@ -41,28 +46,25 @@
 
 
                 <tr>
-                    <th>Pet Id</th>
-                    <th>Pet Name</th>
-                    <th>Pet Age</th>
-                    <th>Pet Type</th>
-
-
-
+                    <th>Acount Id</th>
+                    <th>Name</th>
+                    <th>Withdraw Amount</th>
+                    <th>Acount Balance</th>
 
                 </tr>
             </div>
 
-            <tr th:each="pet : ${pets}">
-                <td th:text="${pet.id}"></td>
-                <td th:text="${pet.name}"></td>
-                <td th:text="${pet.age}"></td>
-                <td th:text="${pet.type}"></td>
+            <tr th:each="withdraw : ${withdraws}">
+                <td th:text="${withdraw.id}"></td>
+                <td th:text="${withdraw.name}"></td>
+                <td th:text="${withdraw.withdrawAmount}"></td>
+                <td th:text="${withdraw.accountBalance}"></td>
 
                 <td>
 
-                    <a th:href="@{/updatepet/{id}(id=${pet.id})}">Update</a>
-                    <a th:href="@{/detailpet/{id}(id=${pet.id})}">Details</a>
-                    <a th:href="@{/deletepet/{id}(id=${pet.id})}">Delete</a>
+                    <a th:href="@{/updatewithdraw/{id}(id=${withdraw.id})}">Update</a>
+                    <a th:href="@{/detailwithdraw/{id}(id=${withdraw.id})}">Details</a>
+                    <a th:href="@{/deletewithdraw/{id}(id=${withdraw.id})}">Delete</a>
 
                 </td>
             </tr>
