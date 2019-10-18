@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/addperson">Add Person</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/addpet">Add Pets</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/personlist">All Persons</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/petlist">All Pets</a>
+        </li>
+
+    </ul>
+</nav>
+<h1  >Deposit List</h1>
+<div class="container">
+    <div class="row">
+        <table class="table">
+
+            <div class="col">
+
+            </div>
+            <div class="col">
+
+
+
+                <tr>
+                    <th>Person Id</th>
+                    <th>Person Name</th>
+                    <th>Number of Pet</th>
+                    <th>Description</th>
+
+
+                </tr>
+            </div>
+
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.name}"></td>
+                <td th:text="${person.numberOfPetsOwned}"></td>
+                <td th:text="${person.description}"></td>
+
+                <td>
+
+                    <a th:href="@{/updateperson/{id}(id=${person.id})}">Update</a>
+                    <a th:href="@{/detailperson/{id}(id=${person.id})}">Details</a>
+                    <a th:href="@{/deleteperson/{id}(id=${person.id})}">Delete</a>
+
+                </td>
+            </tr>
+            <div class="col">
+
+            </div>
+
+
+
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

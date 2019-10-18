@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Registration Form</h1>
+
+<form action="#" th:action="@{/processperson}" th:object="${person}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    Name :<input type="text" th:field="*{name}" />
+    <span th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"></span><br/>
+
+    PetOwned :<input type="number" th:field="*{numberOfPetsOwned}"/>
+    <span th:if="${#fields.hasErrors('numberOfPetsOwned')}"
+          th:errors="*{numberOfPetsOwned}"></span><br/>
+
+    Description :<input type="text" th:field="*{description}"/>
+    <span th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}"></span><br/>
+
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>
